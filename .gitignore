@@ -38,4 +38,14 @@
 ehthumbs.db
 Thumbs.db
 
-./data/physionet/
+
+# Dataset PhysioNet - datos locales
+/data/physionet/
+
+# Archivos de caracteristicas y modelos
+*.pth
+*.pt
+*.ckpt
+# Archivos temporales generados por Python
+__pycache__/
+*.pyc
