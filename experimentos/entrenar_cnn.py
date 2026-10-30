@@ -35,7 +35,7 @@ VAL_CSV = (
 )
 
 MODELO_SALIDA = Path(
-    "experimentos/resultados/cnn_mejor_modelo.pth"
+    "experimentos/resultados/cnn_modelo_ponderado.pth"
 )
 
 # ==========================================
@@ -126,7 +126,13 @@ modelo = simple_cnn(
 
 # El modelo original ya aplica Softmax.
 # NLLLoss recibe log-probabilidades.
-criterio = nn.NLLLoss()
+pesos_clases = torch.tensor(
+    [327 / (2 * 94), 327 / (2 * 233)],
+    dtype=torch.float32,
+    device=device
+)
+
+criterio = nn.NLLLoss(weight=pesos_clases)
 
 optimizador = torch.optim.Adam(
     modelo.parameters(),
